@@ -42,7 +42,7 @@ public:
 	virtual std::string get_current_time() = 0;
 	
 	// Загрузка конфигурации нужные для логирования, и обновления существующей в рантайме
-	virtual void configure( std::string path ) = 0;
+	virtual bool configure( std::string path ) = 0;
 	
 	virtual ~ALogger() = default;
 };
