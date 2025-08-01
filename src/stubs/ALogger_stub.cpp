@@ -1,4 +1,4 @@
-#include "../../include/blink_api/abstractions";
+#include "../../include/blink_api/abstractions/ALogger.h"
 
 class ALoggerStub : public ALogger {
 public:
@@ -38,4 +38,4 @@ public:
 		std::cout << "Config path is \033[33m" + path + "\033[0m" << std::endl;
 		return true;
 	}
-}
+};
