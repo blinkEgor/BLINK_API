@@ -22,3 +22,10 @@ private:
 	AParser* parser;
 	AInput* input;
 };
+
+// ==== C API ====
+// Эти функции будут вызываться при dlopen
+extern "C" {
+	BLINK_API* create_api();
+	void destroy_api( BLINK_API* api );
+}

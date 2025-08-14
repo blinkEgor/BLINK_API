@@ -35,3 +35,12 @@ bool BLINK_API::exit() {
 	logger->log( "API exiting...", LOG_LEVEL::INFO );
 	return true;
 }
+
+// ==== C API реализация ====
+extert "C" BLINK_API* create_api() {
+	return new BLINK_API();
+}
+
+extert "C" void destroy_api( BLINK_API* api ) {
+	delete api;
+}
