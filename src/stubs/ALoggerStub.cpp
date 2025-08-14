@@ -9,7 +9,7 @@ bool ALoggerStub::init() {
 	return true;
 }
 
-void ALoggerStub::log( const std::string& message = "", LOG_LEVEL level = LOG_LEVEL::INFO ) override {
+void ALoggerStub::log( const std::string& message = "", LOG_LEVEL level = LOG_LEVEL::INFO ) {
 	std::string level_str;
 
 	switch( level ) {
@@ -25,15 +25,15 @@ void ALoggerStub::log( const std::string& message = "", LOG_LEVEL level = LOG_LE
 	std::cerr << "[ALoggerStub]" << level_str << message << std::endl;
 }
 
-void ALoggerStub::cleanup_logs( int max_logs = 7 ) override {
+void ALoggerStub::cleanup_logs( int max_logs = 7 ) {
 	std::cout << "ALoggerStub cleanup logs..." << std::endl;
 }
 
-std::string ALoggerStub::get_current_time() override {
+std::string ALoggerStub::get_current_time() {
 	return "2025-01-01 00:00:00";
 }
 
-bool ALoggerStub::configure( std::string path = "configs/api_plagins/default_plagin.conf" ) override {
+bool ALoggerStub::configure( std::string path = "configs/api_plagins/default_plagin.conf" ) {
 	std::cout << "Config path is \033[33m" + path + "\033[0m" << std::endl;
 	return true;
 }

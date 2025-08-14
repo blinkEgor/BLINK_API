@@ -6,4 +6,4 @@ public:
 	void cli_endl();
 	bool file_out( const std::string& message, const std::string& path, text_color color, bg_color bg ) override;
 	bool file_endl( const std::string& path ) override;
-}
+};

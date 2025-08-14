@@ -3,30 +3,30 @@
 
 std::unordered_map<std::string, std::string> stub_map = { { "stub_key", "stub_value" } };
 
-bool AParserStub::load_from_file( const std::string& path = "" ) override {
+bool AParserStub::load_from_file( const std::string& path = "" ) {
 	std::cerr << "[TRACE] [AParserStub] Passed part to load file is <" << path << ">" << std::endl;
 	if ( path == "" ) { return false; }
 	return true;
 }
 
-bool AParserStub::save_to_file( const std::string& path = "" ) const override {
+bool AParserStub::save_to_file( const std::string& path = "" ) const {
 	std::cerr << "[TRACE] [AParserStub] Passed part save to file is <" << path << ">" << std::endl;
 	if ( path == "" ) { return false; }
         return true;
 }
 
-std::string AParserStub::get( const std::string& key = "", const std::string& fallback = "" ) const override {
+std::string AParserStub::get( const std::string& key = "", const std::string& fallback = "" ) const {
 	std::cerr << "[TRACE] [AParserStub] get key is <" << key << ">" << std::endl;
 	std::cerr << "[TRACE] [AParserStub] get fallback is <" << fallback << ">" << std::endl;
 	return ( key + " = " + fallback );
 }
 
-void AParserStub::set( const std::string& key = "", const std::string& value = "" ) override {
+void AParserStub::set( const std::string& key = "", const std::string& value = "" ) {
 	std::cerr << "[TRACE] [AParserStub] set key is <" << key << ">" << std::endl;
         std::cerr << "[TRACE] [AParserStub] set value is <" << value << ">" << std::endl;
 }
 
-std::unordered_map<std::string, std::string> AParserStub::get_all() const override {
+std::unordered_map<std::string, std::string> AParserStub::get_all() const {
 	std::cerr << "[TRACE] [AParserStub] Get all key=value from unordered_map" << std::endl;
 	return stub_map;
 }
