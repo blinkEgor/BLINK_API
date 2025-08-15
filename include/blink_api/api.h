@@ -28,4 +28,9 @@ private:
 extern "C" {
 	BLINK_API* create_api();
 	void destroy_api( BLINK_API* api );
+
+	// Обёртки для динамической загрузки:
+	bool api_init( BLINK_API* api );
+	void api_update( BLINK_API* api );
+	bool api_exit( BLINK_API* api );
 }

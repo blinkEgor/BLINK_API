@@ -37,10 +37,22 @@ bool BLINK_API::exit() {
 }
 
 // ==== C API реализация ====
-extert "C" BLINK_API* create_api() {
+extern "C" BLINK_API* create_api() {
 	return new BLINK_API();
 }
 
-extert "C" void destroy_api( BLINK_API* api ) {
+extern "C" void destroy_api( BLINK_API* api ) {
 	delete api;
+}
+
+extern "C" bool api_init( BLINK_API* api ) {
+	return api->init();
+}
+
+extern "C" void api_update( BLINK_API* api ) {
+	api->update();
+}
+
+extern "C" bool api_exit( BLINK_API* api ) {
+	return api->exit();
 }
