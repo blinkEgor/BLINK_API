@@ -10,6 +10,7 @@ elseif (WIN32)
 	# Для Windows CMake должен автоматически обработать __declspec(dllexport)
 endif()
 
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -35,9 +36,9 @@ add_library(${LIB_NAME} SHARED
 )
 
 # Куда собрать бинарник
-set_target_properties(${BINARY_NAME} ${LIB_NAME} PROPERTIES
+set_target_properties(${LIB_NAME} PROPERTIES
 	LIBRARY_OUTPUT_DIRECTORY ${BIN_DIR}
 )
 
 # Сообщение после успешной сборки
-message(STATUS "BLINK_API ${BINARY_NAME} was build")
+message(STATUS "BLINK_API ${LIB_NAME} was built to ${BIN_DIR}")
