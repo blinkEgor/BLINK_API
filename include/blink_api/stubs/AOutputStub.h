@@ -2,6 +2,7 @@
 
 class AOutputStub : public AOutput {
 public:
+	~AOutputStub() override = default;
 	void cli_out( const std::string& message, text_color color, bg_color bg ) override;
 	void cli_endl();
 	bool file_out( const std::string& message, const std::string& path, text_color color, bg_color bg ) override;

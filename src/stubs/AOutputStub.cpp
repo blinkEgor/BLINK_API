@@ -35,7 +35,7 @@ bool AOutputStub::file_out( const std::string& message = "", const std::string& 
 	return true;
 }
 
-bool file_endl( const std::string& path ) {
+bool AOutputStub::file_endl( const std::string& path ) {
 	if ( path == "" ) { return false; }
 
 	std::cout << std::endl;

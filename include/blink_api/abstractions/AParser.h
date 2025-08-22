@@ -5,6 +5,8 @@
 
 class AParser {
 public:
+	virtual ~AParser() = default;
+
 	// Загрузка конфигурации из файла в unordered_map
 	virtual bool load_from_file( const std::string& path ) = 0;
 
@@ -19,6 +21,4 @@ public:
 
 	// Получить карту всех пар ключ-значение
 	virtual std::unordered_map<std::string, std::string> get_all() const = 0;
-
-	virtual ~AParser() = default;
 };

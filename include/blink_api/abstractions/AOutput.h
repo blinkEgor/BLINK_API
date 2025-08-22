@@ -32,6 +32,8 @@ enum class bg_color {
 
 class AOutput {
 public:
+	virtual ~AOutput() = default;
+
 	// Вывод текста в CLI.
 	// Параметры:
 	// 1. Сообщения, которое будет выведено в CLI,
@@ -54,6 +56,4 @@ public:
 	// Параметр:
 	// 1. Путь к файлу в котором будет сделан отступ, относительно корневой директории программы.
 	virtual bool file_endl( const std::string& path ) = 0;
-
-	virtual ~AOutput() = default;
 };

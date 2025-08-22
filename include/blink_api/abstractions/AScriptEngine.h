@@ -2,6 +2,8 @@
 
 class AScriptEngine {
 public:
+	virtual ~AScriptEngine() = default;
+
 	// Инициализация логики скрипта, используется один раз после запуска ядра.
 	virtual void init() = 0;
 

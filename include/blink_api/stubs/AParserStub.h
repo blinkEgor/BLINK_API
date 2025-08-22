@@ -2,6 +2,7 @@
 
 class AParserStub : public AParser {
 public:
+	~AParserStub() override = default;
 	bool load_from_file( const std::string& path ) override;
 	bool save_to_file( const std::string& path ) const override;
 	std::string get( const std::string& key, const std::string& fallback ) const override;
