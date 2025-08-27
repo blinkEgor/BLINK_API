@@ -45,3 +45,6 @@ build
 bin
 logs
 dist
+
+# Сгенерированные компиляцией фалы
+include/blink_api/version.h

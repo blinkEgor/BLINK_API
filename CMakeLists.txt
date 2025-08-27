@@ -27,6 +27,12 @@ file(GLOB_RECURSE BLINK_API_SRC
 	${SRC_DIR}/*.cpp
 )
 
+configure_file(
+	${CMAKE_CURRENT_SOURCE_DIR}/include/blink_api/version.h.in
+	${CMAKE_CURRENT_SOURCE_DIR}/include/blink_api/version.h
+	@ONLY
+)
+
 # Где .h-файлы
 include_directories(${INCLUDE_DIR})
 
