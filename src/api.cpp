@@ -6,6 +6,8 @@
 #include "../include/blink_api/stubs/AParserStub.h"
 #include "../include/blink_api/stubs/AInputStub.h"
 
+#include "../include/blink_api/version.h"
+
 BLINK_API::BLINK_API() {
 	logger = new ALoggerStub();
 	output = new AOutputStub();
@@ -24,6 +26,7 @@ BLINK_API::~BLINK_API() {
 
 bool BLINK_API::init() {
 	logger->log( "API init called", LOG_LEVEL::INFO );
+	logger->log( "BLINK_API: v" + BLINK_API_VERSION + "-proto", LOG_LEVEL::DEBUG );
 	return true;
 }
 
