@@ -26,7 +26,7 @@ BLINK_API::~BLINK_API() {
 
 bool BLINK_API::init() {
 	logger->log( "API init called", LOG_LEVEL::INFO );
-	logger->log( "BLINK_API: v" + BLINK_API_VERSION + "-proto", LOG_LEVEL::DEBUG );
+	logger->log( "BLINK_API: v" + std::string( BLINK_API_VERSION ) + "-proto", LOG_LEVEL::DEBUG );
 	return true;
 }
 
@@ -58,4 +58,8 @@ extern "C" void api_update( BLINK_API* api ) {
 
 extern "C" bool api_exit( BLINK_API* api ) {
 	return api->exit();
+}
+
+extern "C" const char* api_get_version() {
+	return BLINK_API_VERSION;
 }

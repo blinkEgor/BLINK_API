@@ -40,4 +40,7 @@ extern "C" {
 	BLINK_API_EXPORT bool api_init( BLINK_API* api );
 	BLINK_API_EXPORT void api_update( BLINK_API* api );
 	BLINK_API_EXPORT bool api_exit( BLINK_API* api );
+
+	// Версия API
+	BLINK_API_EXPORT const char* api_get_version();
 }
