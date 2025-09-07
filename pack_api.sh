@@ -17,7 +17,7 @@ LIBRARY_BIN="libblink_api.so"
 
 DIST_DIR="dist"
 BIN_DIR="bin"
-CONFIG_DIR="configs/api_plagins"
+CONFIG_DIR="configs/api_plugins"
 INCLUDE_DIR="include/blink_api"
 ABSTRACTION_DIR="include/blink_api/abstractions"
 STUB_DIR="include/blink_api/stubs"
