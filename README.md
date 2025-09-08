@@ -8,7 +8,7 @@ BLINK_API/
 ├── build.sh		# Скрипт сборки
 ├── CMakeLists.txt	# Конфигурация CMake
 ├── configs/
-│   └── api_plagins/	# Конфигурации плагинов
+│   └── api_plugins/	# Конфигурации плагинов
 ├── include/
 │   └── blink_api/
 │       ├── abstractions/	# Интерфейсы (ALogger, AOutput, ...)
