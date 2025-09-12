@@ -50,16 +50,16 @@ dlclose(handle);
 
 class CustomLogger : public ALogger {
 public:
-    bool init() override {
-        // ваша реализация инициализации
-        return true;
-    }
+	bool init() override {
+		// ваша реализация инициализации
+		return true;
+	}
 
-    void log(const std::string& message, LOG_LEVEL level) override {
-        // ваша реализация логирования
-    }
+	void log(const std::string& message, LOG_LEVEL level) override {
+		// ваша реализация логирования
+	}
 
-    // ... остальные методы
+	// ... остальные методы
 };
 ```
 ---
