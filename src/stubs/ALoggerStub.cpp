@@ -1,4 +1,4 @@
-#include "../../include/blink_api/stubs/ALoggerStub.h"
+#include "../../include/blink_api/stubs/ALoggerStub.h"	// <string>
 #include <iostream>
 
 bool ALoggerStub::init() {

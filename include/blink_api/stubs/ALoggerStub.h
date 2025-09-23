@@ -1,4 +1,4 @@
-#include "../abstractions/ALogger.h"
+#include "../abstractions/ALogger.h"	// <string>
 
 class ALoggerStub : public ALogger {
 public:
