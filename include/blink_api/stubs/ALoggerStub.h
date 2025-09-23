@@ -1,4 +1,5 @@
-#include "../abstractions/ALogger.h"	// <string>
+#pragma once
+#include "../abstractions/ALogger.h"	// <string> | LOG_LEVEL
 
 class ALoggerStub : public ALogger {
 public:
