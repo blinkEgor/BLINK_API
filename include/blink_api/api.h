@@ -12,6 +12,7 @@
 #include "abstractions/AScriptEngine.h"
 #include "abstractions/AParser.h"
 #include "abstractions/AInput.h"
+#include <memory>
 
 class BLINK_API {
 public:
@@ -23,11 +24,11 @@ public:
 	bool exit();
 
 private:
-	ALogger* logger;
-	AOutput* output;
-	AScriptEngine* script;
-	AParser* parser;
-	AInput* input;
+	std::unique_ptr<ALogger> logger;
+	std::unique_ptr<AOutput> output;
+	std::unique_ptr<AScriptEngine> script;
+	std::unique_ptr<AParser> parser;
+	std::unique_ptr<AInput> input;
 };
 
 // ==== C API ====

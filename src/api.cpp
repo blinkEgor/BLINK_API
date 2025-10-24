@@ -1,30 +1,36 @@
 #include "../include/blink_api/api.h"
 
-#include "../include/blink_api/stubs/ALoggerStub.h"
+#include "../include/blink_api/fakes/ALoggerFake.h"
 #include "../include/blink_api/stubs/AOutputStub.h"
 #include "../include/blink_api/stubs/AScriptEngineStub.h"
-#include "../include/blink_api/stubs/AParserStub.h"
+#include "../include/blink_api/fakes/AParserFake.h"
 #include "../include/blink_api/stubs/AInputStub.h"
 
 #include "../include/blink_api/version.h"
 
 BLINK_API::BLINK_API() {
-	logger = new ALoggerStub();
-	output = new AOutputStub();
-	script = new AScriptEngineStub();
-	parser = new AParserStub();
-	input  = new AInputStub();
+	logger = std::make_unique<ALoggerFake>();
+	output = std::make_unique<AOutputStub>();
+	script = std::make_unique<AScriptEngineStub>();
+	parser = std::make_unique<AParserFake>();
+	input  = std::make_unique<AInputStub>();
 }
 
 BLINK_API::~BLINK_API() {
-	delete logger;
-	delete output;
-	delete script;
-	delete parser;
-	delete input;
+
 }
 
 bool BLINK_API::init() {
+	if( !logger ) {
+		std::cerr << "[std::cerr] [FATAL] Logger is not created. \n";
+		return false;
+	} else { logger->log( "Logger was created", LOG_LEVEL::DEBUG ); }
+
+	if( !parser ) {
+		logger->log( "Parser is not created", LOG_LEVEL::FATAL );
+		return false;
+	} else { logger->log( "Parser was created", LOG_LEVEL::DEBUG ); }
+
 	logger->log( "API init called", LOG_LEVEL::INFO );
 	logger->log( "BLINK_API: v" + std::string( BLINK_API_VERSION ) + "-proto", LOG_LEVEL::DEBUG );
 	return true;
