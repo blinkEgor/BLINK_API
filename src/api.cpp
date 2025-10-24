@@ -10,10 +10,13 @@
 
 BLINK_API::BLINK_API() {
 	logger = std::make_unique<ALoggerFake>();
-	output = std::make_unique<AOutputStub>();
-	script = std::make_unique<AScriptEngineStub>();
-	parser = std::make_unique<AParserFake>();
-	input  = std::make_unique<AInputStub>();
+
+	if ( logger ) {
+		output = std::make_unique<AOutputStub>( logger.get() );
+		script = std::make_unique<AScriptEngineStub>();
+		parser = std::make_unique<AParserFake>();
+		input  = std::make_unique<AInputStub>();
+	}
 }
 
 BLINK_API::~BLINK_API() {

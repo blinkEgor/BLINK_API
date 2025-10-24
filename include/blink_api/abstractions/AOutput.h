@@ -30,8 +30,11 @@ enum class bg_color {
 	none
 };
 
+class ALogger;
+
 class AOutput {
 public:
+	AOutput( ALogger* logger = nullptr ) : m_logger( logger ) {}
 	virtual ~AOutput() = default;
 
 	// Вывод текста в CLI.
@@ -56,4 +59,6 @@ public:
 	// Параметр:
 	// 1. Путь к файлу в котором будет сделан отступ, относительно корневой директории программы.
 	virtual bool file_endl( const std::string& path ) = 0;
+
+protected: ALogger* m_logger;
 };

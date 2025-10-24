@@ -2,6 +2,7 @@
 
 class AOutputStub : public AOutput {
 public:
+	AOutputStub( ALogger* logger = nullptr ) : AOutput( logger ) {}
 	~AOutputStub() override = default;
 	void cli_out( const std::string& message, text_color color, bg_color bg ) override;
 	void cli_endl();
