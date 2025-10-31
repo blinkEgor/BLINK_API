@@ -1,14 +1,21 @@
 #include "../../include/blink_api/stubs/AScriptEngineStub.h"
+#include "../../include/blink_api/abstractions/ALogger.h"
 #include <iostream>
 
 void AScriptEngineStub::init() {
-	std::cerr << "[TRACE] AScriptEngineStub::init() called (no script engine connected)" << std::endl;
+    if ( m_logger ) {
+        m_logger->log( "AScriptEngineStub::init() called (no script engine connected)", LOG_LEVEL::DEBUG );
+    }
 }
 
 void AScriptEngineStub::update() {
-	std::cerr << "[TRACE] AScriptEngineStub::update() called (no script logic)" << std::endl;
+    if ( m_logger ) {
+        m_logger->log( "AScriptEngineStub::update() called (no script logic)", LOG_LEVEL::TRACE );
+    }
 }
 
 void AScriptEngineStub::exit() {
-	std::cerr << "[TRACE] AScriptEngineStub::exit() called (no cleanup required)" << std::endl;
+    if ( m_logger ) {
+        m_logger->log( "AScriptEngineStub::exit() called (no cleanup required)", LOG_LEVEL::DEBUG );
+    }
 }

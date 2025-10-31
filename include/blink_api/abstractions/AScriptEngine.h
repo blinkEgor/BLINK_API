@@ -1,7 +1,10 @@
 #pragma once
 
+class ALogger;
+
 class AScriptEngine {
 public:
+    AScriptEngine( ALogger* logger = nullptr ) : m_logger( logger ) {}
 	virtual ~AScriptEngine() = default;
 
 	// Инициализация логики скрипта, используется один раз после запуска ядра.
@@ -12,4 +15,6 @@ public:
 
 	// Завершение логики программы, сохранения состояния и прощальное сообщение.
 	virtual void exit() = 0;
+
+protected: ALogger* m_logger;
 };
