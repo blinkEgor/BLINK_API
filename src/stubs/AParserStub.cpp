@@ -1,32 +1,51 @@
 #include "../../include/blink_api/stubs/AParserStub.h"
+#include "../../include/blink_api/abstractions/ALogger.h"
 #include <iostream>
 
 std::unordered_map<std::string, std::string> stub_map = { { "stub_key", "stub_value" } };
 
-bool AParserStub::load_from_file( const std::string& path = "" ) {
-	std::cerr << "[TRACE] [AParserStub] Passed part to load file is <" << path << ">" << std::endl;
-	if ( path == "" ) { return false; }
-	return true;
+bool AParserStub::load_from_file( const std::string& path ) {
+    if ( m_logger ) {
+        m_logger->log( "Passed path to load file: " + path, LOG_LEVEL::DEBUG );
+    }
+    if ( path.empty() ) {
+        if ( m_logger ) {
+            m_logger->log( "Load from file failed - empty path", LOG_LEVEL::WARNING );
+        }
+        return false;
+    }
+    return true;
 }
 
-bool AParserStub::save_to_file( const std::string& path = "" ) const {
-	std::cerr << "[TRACE] [AParserStub] Passed part save to file is <" << path << ">" << std::endl;
-	if ( path == "" ) { return false; }
-        return true;
+bool AParserStub::save_to_file( const std::string& path ) const {
+    if ( m_logger ) {
+        m_logger->log( "Passed path to save file: " + path, LOG_LEVEL::DEBUG );
+    }
+    if ( path.empty() ) {
+        if ( m_logger ) {
+            m_logger->log( "Save to file failed - empty path", LOG_LEVEL::WARNING );
+        }
+        return false;
+    }
+    return true;
 }
 
-std::string AParserStub::get( const std::string& key = "", const std::string& fallback = "" ) const {
-	std::cerr << "[TRACE] [AParserStub] get key is <" << key << ">" << std::endl;
-	std::cerr << "[TRACE] [AParserStub] get fallback is <" << fallback << ">" << std::endl;
-	return ( key + " = " + fallback );
+std::string AParserStub::get( const std::string& key, const std::string& fallback ) const {
+    if ( m_logger ) {
+        m_logger->log( "Get key: " + key + ", fallback: " + fallback, LOG_LEVEL::DEBUG );
+    }
+    return ( key + " = " + fallback );
 }
 
-void AParserStub::set( const std::string& key = "", const std::string& value = "" ) {
-	std::cerr << "[TRACE] [AParserStub] set key is <" << key << ">" << std::endl;
-        std::cerr << "[TRACE] [AParserStub] set value is <" << value << ">" << std::endl;
+void AParserStub::set( const std::string& key, const std::string& value ) {
+    if ( m_logger ) {
+        m_logger->log( "Set key: " + key + ", value: " + value, LOG_LEVEL::DEBUG );
+    }
 }
 
 std::unordered_map<std::string, std::string> AParserStub::get_all() const {
-	std::cerr << "[TRACE] [AParserStub] Get all key=value from unordered_map" << std::endl;
-	return stub_map;
+    if ( m_logger ) {
+        m_logger->log( "Get all key=value pairs from unordered_map", LOG_LEVEL::DEBUG );
+    }
+    return stub_map;
 }

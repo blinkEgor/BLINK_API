@@ -14,7 +14,7 @@ BLINK_API::BLINK_API() {
 	if ( logger ) {
 		output = std::make_unique<AOutputStub>( logger.get() );
 		script = std::make_unique<AScriptEngineStub>( logger.get() );
-		parser = std::make_unique<AParserFake>();
+		parser = std::make_unique<AParserFake>( logger.get() );
 		input  = std::make_unique<AInputStub>( logger.get() );
 	}
 }

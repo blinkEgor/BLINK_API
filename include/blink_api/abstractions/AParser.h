@@ -3,8 +3,11 @@
 #include <string>
 #include <unordered_map>
 
+class ALogger;
+
 class AParser {
 public:
+    AParser( ALogger* logger = nullptr ) : m_logger( logger ) {}
 	virtual ~AParser() = default;
 
 	// Загрузка конфигурации из файла в unordered_map
@@ -21,4 +24,6 @@ public:
 
 	// Получить карту всех пар ключ-значение
 	virtual std::unordered_map<std::string, std::string> get_all() const = 0;
+
+protected: ALogger* m_logger;
 };

@@ -3,6 +3,7 @@
 
 class AParserFake : public AParser {
 public:
+    AParserFake( ALogger* logger = nullptr ) : AParser( logger ) {}
 	~AParserFake() override = default;	// Пока не знаю будет реализация или нет, поэтому default
 	bool load_from_file( const std::string& path ) override;
 	bool save_to_file( const std::string& path ) const override;

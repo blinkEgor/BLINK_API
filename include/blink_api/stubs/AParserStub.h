@@ -2,6 +2,7 @@
 
 class AParserStub : public AParser {
 public:
+    AParserStub( ALogger* logger = nullptr ) : AParser( logger ) {}
 	~AParserStub() override = default;
 	bool load_from_file( const std::string& path ) override;
 	bool save_to_file( const std::string& path ) const override;

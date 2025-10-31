@@ -1,15 +1,19 @@
 #include "../../include/blink_api/fakes/AParserFake.h"	// <string> | <unordered_map>
+#include "../../include/blink_api/abstractions/ALogger.h"
 #include <iostream>
 #include <fstream>	// для std::ifstream
 #include <sstream>	// для std::istringstream
-std::string stub = "[AParserFake -> std::cerr]";
 
 bool AParserFake::load_from_file( const std::string& path = "configs/api_plugins/default_plugin.conf" ) {
-	std::cerr << stub + "Loading config from: " + path << std::endl;
+    if ( m_logger ) {
+        m_logger->log( "Loading config from: " + path, LOG_LEVEL::DEBUG );
+    }
 	std::ifstream file( path );
 
 	if ( !file.is_open() ) {
-		std::cerr << stub + "Failed to open config: " + path << std::endl;
+        if ( m_logger ) {
+            m_logger->log( "Failed to open config: " + path, LOG_LEVEL::ERROR );
+        }
 		return false;
 	}
 
@@ -22,7 +26,9 @@ bool AParserFake::load_from_file( const std::string& path = "configs/api_plugins
 
 		if ( !current_key.empty() ) {
 			config_map[ current_key ] = current_value;
-			std::cerr << stub + "Parsed config [" + current_key + "] = " + current_value << std::endl;
+            if ( m_logger ) {
+                m_logger->log( "Parsed config [" + current_key + "] = " + current_value, LOG_LEVEL::DEBUG );
+            }
 			current_key = "";
 			current_value = "";
 		}
@@ -39,14 +45,19 @@ bool AParserFake::load_from_file( const std::string& path = "configs/api_plugins
 
 		if ( eq != "=" ) continue;
 
-		std::cerr << stub + "Found config key: " + key << std::endl;
+
+        if ( m_logger ) {
+            m_logger->log( "Found config key: " + key, LOG_LEVEL::DEBUG );
+        }
 		current_key = key;
 		current_value = value;
 	}
 
 	if ( !current_key.empty() ) {
 		config_map[ current_key ] = current_value;
-		std::cerr << stub + "Parsed config [" + current_key + "] = " + current_value << std::endl;
+        if ( m_logger ) {
+            m_logger->log( "Parsed config [" + current_key + "] = " + current_value, LOG_LEVEL::DEBUG );
+        }
 		current_key = "";
 		current_value = "";
 	}
@@ -61,27 +72,37 @@ std::string AParserFake::get( const std::string& key = "<empty>", const std::str
 	// Проверка, если нашелся нужный key на итерации. end -- это последний элемент итерации
 	if ( it != config_map.end() ) {
 		// second -- это value в моем случае, потомучто у меня хранятся пары key/value, на нужной итерации
-		std::cerr << stub << "Get [" << key << "] = " << it->second << std::endl;
+        if ( m_logger ) {
+            m_logger->log( "Get [" + key + "] = " + it->second, LOG_LEVEL::DEBUG );
+        }
 		return it->second;
 	}
 
-	std::cerr << stub << "Get fallback for [" << key << "] = " << fallback << std::endl;
+    if ( m_logger ) {
+        m_logger->log( "Get fallback for [" + key + "] = " + fallback, LOG_LEVEL::DEBUG );
+    }
 	return fallback;
 }
 
 std::unordered_map<std::string, std::string> AParserFake::get_all() const {
-	std::cerr << stub << "Get all config entries (count: " << config_map.size() << ")" << std::endl;
+    if ( m_logger ) {
+        m_logger->log( "Get all config entries (count: " + std::to_string(config_map.size()) + ")", LOG_LEVEL::DEBUG );
+    }
 	// Возвращается коппия
 	return config_map;
 }
 
 bool AParserFake::save_to_file( const std::string& path ) const {
-	std::cerr << stub << "Save to file not supported in fake parser. Path: " << path << std::endl;
+    if ( m_logger ) {
+        m_logger->log( "Save to file not supported in fake parser. Path: " + path, LOG_LEVEL::WARNING );
+    }
 	// Не сохраняет, потому что это -- Fake, а не полноценная реализация
 	return false;
 }
 
 void AParserFake::set( const std::string& key, const std::string& value ) {
-	std::cerr << stub << "Set operation not supported in fake parser. Key: " << key << ", Value: " << value << std::endl;
+    if ( m_logger ) {
+        m_logger->log( "Set operation not supported in fake parser. Key: " + key + ", Value: " + value, LOG_LEVEL::WARNING );
+    }
 	// Не изменяем config_map -- это Fake, а не полноценная реализация
 }
