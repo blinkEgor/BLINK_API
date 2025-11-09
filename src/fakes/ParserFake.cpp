@@ -1,10 +1,10 @@
-#include "../../include/blink_api/fakes/AParserFake.h"	// <string> | <unordered_map>
+#include "../../include/blink_api/fakes/ParserFake.h"	// <string> | <unordered_map>
 #include "../../include/blink_api/abstractions/ALogger.h"
 #include <iostream>
 #include <fstream>	// для std::ifstream
 #include <sstream>	// для std::istringstream
 
-bool AParserFake::load_from_file( const std::string& path = "configs/api_plugins/default_plugin.conf" ) {
+bool ParserFake::load_from_file( const std::string& path = "configs/api_plugins/default_plugin.conf" ) {
     if ( m_logger ) {
         m_logger->log( "Loading config from: " + path, LOG_LEVEL::DEBUG );
     }
@@ -65,7 +65,7 @@ bool AParserFake::load_from_file( const std::string& path = "configs/api_plugins
 	return true;
 }
 
-std::string AParserFake::get( const std::string& key = "<empty>", const std::string& fallback = "<empty>" ) const {
+std::string ParserFake::get( const std::string& key = "<empty>", const std::string& fallback = "<empty>" ) const {
 	// Поиск ключа в карте. it -- это итерация, указатель на пару значений
 	auto it = config_map.find( key );
 
@@ -84,7 +84,7 @@ std::string AParserFake::get( const std::string& key = "<empty>", const std::str
 	return fallback;
 }
 
-std::unordered_map<std::string, std::string> AParserFake::get_all() const {
+std::unordered_map<std::string, std::string> ParserFake::get_all() const {
     if ( m_logger ) {
         m_logger->log( "Get all config entries (count: " + std::to_string(config_map.size()) + ")", LOG_LEVEL::DEBUG );
     }
@@ -92,7 +92,7 @@ std::unordered_map<std::string, std::string> AParserFake::get_all() const {
 	return config_map;
 }
 
-bool AParserFake::save_to_file( const std::string& path ) const {
+bool ParserFake::save_to_file( const std::string& path ) const {
     if ( m_logger ) {
         m_logger->log( "Save to file not supported in fake parser. Path: " + path, LOG_LEVEL::WARNING );
     }
@@ -100,7 +100,7 @@ bool AParserFake::save_to_file( const std::string& path ) const {
 	return false;
 }
 
-void AParserFake::set( const std::string& key, const std::string& value ) {
+void ParserFake::set( const std::string& key, const std::string& value ) {
     if ( m_logger ) {
         m_logger->log( "Set operation not supported in fake parser. Key: " + key + ", Value: " + value, LOG_LEVEL::WARNING );
     }

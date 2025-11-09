@@ -1,21 +1,21 @@
 #include "../include/blink_api/api.h"
 
-#include "../include/blink_api/fakes/ALoggerFake.h"
-#include "../include/blink_api/stubs/AOutputStub.h"
-#include "../include/blink_api/stubs/AScriptEngineStub.h"
-#include "../include/blink_api/fakes/AParserFake.h"
-#include "../include/blink_api/stubs/AInputStub.h"
+#include "../include/blink_api/fakes/LoggerFake.h"
+#include "../include/blink_api/stubs/OutputStub.h"
+#include "../include/blink_api/stubs/ScriptEngineStub.h"
+#include "../include/blink_api/fakes/ParserFake.h"
+#include "../include/blink_api/stubs/InputStub.h"
 
 #include "../include/blink_api/version.h"
 
 BLINK_API::BLINK_API() {
-	logger = std::make_unique<ALoggerFake>();
+	logger = std::make_unique<LoggerFake>();
 
 	if ( logger ) {
-		output = std::make_unique<AOutputStub>( logger.get() );
-		script = std::make_unique<AScriptEngineStub>( logger.get() );
-		parser = std::make_unique<AParserFake>( logger.get() );
-		input  = std::make_unique<AInputStub>( logger.get() );
+		output = std::make_unique<OutputStub>( logger.get() );
+		script = std::make_unique<ScriptEngineStub>( logger.get() );
+		parser = std::make_unique<ParserFake>( logger.get() );
+		input  = std::make_unique<InputStub>( logger.get() );
 	}
 }
 

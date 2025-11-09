@@ -1,4 +1,4 @@
-#include "../../include/blink_api/fakes/ALoggerFake.h"	// <string> | LOG_LEVEL
+#include "../../include/blink_api/fakes/LoggerFake.h"	// <string> | LOG_LEVEL
 #include <chrono>
 #include <ctime>
 #include <iomanip>
@@ -9,7 +9,7 @@
 #include <algorithm>
 #include <vector>
 
-std::string ALoggerFake::get_current_time() {
+std::string LoggerFake::get_current_time() {
 	auto now = std::chrono::system_clock::now();
 	std::time_t now_time_t = std::chrono::system_clock::to_time_t( now );
 	std::tm now_tm = *std::localtime( &now_time_t );
@@ -18,7 +18,7 @@ std::string ALoggerFake::get_current_time() {
 	return ss.str();
 }
 
-void ALoggerFake::log( const std::string& message = "", LOG_LEVEL level = LOG_LEVEL::INFO ) {
+void LoggerFake::log( const std::string& message = "", LOG_LEVEL level = LOG_LEVEL::INFO ) {
 	std::string time_str = get_current_time();
 	std::string level_str;
 
@@ -37,7 +37,7 @@ void ALoggerFake::log( const std::string& message = "", LOG_LEVEL level = LOG_LE
 	}
 
 	// Только дату, чтобы дать имя файла лога -- сортировка по дням.
-	std::string date_str = ALoggerFake::get_current_time().substr( 0, 10 );
+	std::string date_str = LoggerFake::get_current_time().substr( 0, 10 );
 	// Пока что оставим .txt как в ядре, чтобы лог продолжася в том же файле. Это форос рефакторинга в будущем.
 	std::string filename = "logs/log_" + date_str + ".txt";
 	// Второй аргумент, нужен чтобы в файле новые записи добавлялись в конец.
@@ -49,7 +49,7 @@ void ALoggerFake::log( const std::string& message = "", LOG_LEVEL level = LOG_LE
 	std::cerr << "[" << time_str << "] " << level_str << message << std::endl;
 }
 
-void ALoggerFake::cleanup_logs( int max_logs = 7 ) {
+void LoggerFake::cleanup_logs( int max_logs = 7 ) {
 	if ( max_logs <= 0 ) {
 		max_logs = 7;
 	}
@@ -73,16 +73,16 @@ void ALoggerFake::cleanup_logs( int max_logs = 7 ) {
 	}
 }
 
-bool ALoggerFake::init() {
-	ALoggerFake::log( "[ALoggerFake] Fake logger initialized (no external dependencies required)" );
+bool LoggerFake::init() {
+	LoggerFake::log( "[LoggerFake] Fake logger initialized (no external dependencies required)" );
 	return true;
 }
 
-bool ALoggerFake::configure( std::string path ) {
-	ALoggerFake::log( "[ALoggerFake] Fake logger does not support configuration. Path '" + path + "' will be ignored.", LOG_LEVEL::WARNING );
+bool LoggerFake::configure( std::string path ) {
+	LoggerFake::log( "[LoggerFake] Fake logger does not support configuration. Path '" + path + "' will be ignored.", LOG_LEVEL::WARNING );
 	return true;
 }
 
-ALoggerFake::~ALoggerFake() {
-	ALoggerFake::log( "[ALoggerFake] Fake logger shutdown completed" );
+LoggerFake::~LoggerFake() {
+	LoggerFake::log( "[LoggerFake] Fake logger shutdown completed" );
 }

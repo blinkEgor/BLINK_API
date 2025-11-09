@@ -1,9 +1,9 @@
 #pragma once
 #include "../abstractions/ALogger.h"	// <string> | LOG_LEVEL
 
-class ALoggerFake : public ALogger {
+class LoggerFake : public ALogger {
 public:
-	~ALoggerFake() override;
+	~LoggerFake() override;
 	bool init() override;
 	void log( const std::string& message, LOG_LEVEL level ) override;
 	void cleanup_logs( int max_logs ) override;

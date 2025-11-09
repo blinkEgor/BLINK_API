@@ -1,8 +1,8 @@
 #include "../abstractions/AInput.h" // <string> | <iostream>
 
-class AInputStub : public AInput {
+class InputStub : public AInput {
 public:
-    AInputStub( ALogger* logger = nullptr ) : AInput( logger ) {}
-	~AInputStub() override = default;
+    InputStub( ALogger* logger = nullptr ) : AInput( logger ) {}
+	~InputStub() override = default;
 	std::string get_input( const std::string& message ) override;
 };

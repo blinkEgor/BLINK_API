@@ -1,15 +1,15 @@
-#include "../../include/blink_api/stubs/ALoggerStub.h"	// <string>
+#include "../../include/blink_api/stubs/LoggerStub.h"	// <string>
 #include <iostream>
 
-bool ALoggerStub::init() {
+bool LoggerStub::init() {
 	if ( !configure( "configs/api_plagins/default_plagin.conf" ) ) {
 		return false;
 	}
-	std::cout << "ALoggerStub is working" << std::endl;
+	std::cout << "LoggerStub is working" << std::endl;
 	return true;
 }
 
-void ALoggerStub::log( const std::string& message = "", LOG_LEVEL level = LOG_LEVEL::INFO ) {
+void LoggerStub::log( const std::string& message = "", LOG_LEVEL level = LOG_LEVEL::INFO ) {
 	std::string level_str;
 
 	switch( level ) {
@@ -22,18 +22,18 @@ void ALoggerStub::log( const std::string& message = "", LOG_LEVEL level = LOG_LE
 		default: level_str = "\033[90m[UNKNOWN]\033[0m "; break;
 	}
 
-	std::cerr << "[ALoggerStub]" << level_str << message << std::endl;
+	std::cerr << "[LoggerStub]" << level_str << message << std::endl;
 }
 
-void ALoggerStub::cleanup_logs( int max_logs = 7 ) {
-	std::cout << "ALoggerStub cleanup logs..." << std::endl;
+void LoggerStub::cleanup_logs( int max_logs = 7 ) {
+	std::cout << "LoggerStub cleanup logs..." << std::endl;
 }
 
-std::string ALoggerStub::get_current_time() {
+std::string LoggerStub::get_current_time() {
 	return "2025-01-01 00:00:00";
 }
 
-bool ALoggerStub::configure( std::string path = "configs/api_plagins/default_plagin.conf" ) {
+bool LoggerStub::configure( std::string path = "configs/api_plagins/default_plagin.conf" ) {
 	std::cout << "Config path is \033[33m" + path + "\033[0m" << std::endl;
 	return true;
 }

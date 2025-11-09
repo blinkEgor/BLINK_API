@@ -1,9 +1,9 @@
 #include "../abstractions/AParser.h"
 
-class AParserStub : public AParser {
+class ParserStub : public AParser {
 public:
-    AParserStub( ALogger* logger = nullptr ) : AParser( logger ) {}
-	~AParserStub() override = default;
+    ParserStub( ALogger* logger = nullptr ) : AParser( logger ) {}
+	~ParserStub() override = default;
 	bool load_from_file( const std::string& path ) override;
 	bool save_to_file( const std::string& path ) const override;
 	std::string get( const std::string& key, const std::string& fallback ) const override;

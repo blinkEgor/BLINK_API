@@ -1,10 +1,10 @@
 #pragma once
 #include "../abstractions/AParser.h"	// <string> | <unordered_map>
 
-class AParserFake : public AParser {
+class ParserFake : public AParser {
 public:
-    AParserFake( ALogger* logger = nullptr ) : AParser( logger ) {}
-	~AParserFake() override = default;	// Пока не знаю будет реализация или нет, поэтому default
+    ParserFake( ALogger* logger = nullptr ) : AParser( logger ) {}
+	~ParserFake() override = default;	// Пока не знаю будет реализация или нет, поэтому default
 	bool load_from_file( const std::string& path ) override;
 	bool save_to_file( const std::string& path ) const override;
 	std::string get( const std::string& key, const std::string& fallback ) const override;
