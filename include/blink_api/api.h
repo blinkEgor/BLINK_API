@@ -12,6 +12,7 @@
 #include "abstractions/AScriptEngine.h"
 #include "abstractions/AParser.h"
 #include "abstractions/AInput.h"
+#include "PluginManager.h"
 #include <memory>
 
 class BLINK_API {
@@ -29,6 +30,7 @@ private:
 	std::unique_ptr<AScriptEngine> script;
 	std::unique_ptr<AParser> parser;
 	std::unique_ptr<AInput> input;
+    std::unique_ptr<PluginManager> plugin_manager;
 };
 
 // ==== C API ====

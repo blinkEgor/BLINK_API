@@ -2,9 +2,11 @@
 #include <string>
 #include <vector>
 
+class ALogger;
+
 class PluginManager {
 public:
-	PluginManager() = default;
+	PluginManager( ALogger* logger = nullptr );
 	~PluginManager() = default;
 
 	void load_plugins();
@@ -12,4 +14,5 @@ public:
 
 private:
 	std::vector<std::string> loaded_plugins;
+    ALogger* m_logger;
 };
